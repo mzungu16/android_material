@@ -1,9 +1,11 @@
 package com.gleb.android_material
 
+import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import java.util.*
 
 class MainFragmentViewModel : ViewModel() {
     private val liveDataToObserve: MutableLiveData<ResponsePOD> = MutableLiveData()
@@ -19,7 +21,7 @@ class MainFragmentViewModel : ViewModel() {
         liveDataToObserve.value = getNasaPODLiveData().value
     }
 
-    fun getNasaPODInternetAccess() {
-        repo.getNasaPODInternetAccess()
+    fun getNasaPODInternetAccess(date:String) {
+        repo.getNasaPODInternetAccess(date)
     }
 }

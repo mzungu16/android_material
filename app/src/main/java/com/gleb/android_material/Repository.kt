@@ -4,5 +4,5 @@ import androidx.lifecycle.LiveData
 
 interface Repository {
     fun getNasaPOD(): LiveData<ResponsePOD>
-    fun getNasaPODInternetAccess()
+    fun getNasaPODInternetAccess(date: String)
 }

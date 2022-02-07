@@ -26,8 +26,8 @@ object InternetLoader {
         .build()
         .create(RetrofitInt::class.java)
 
-    fun getNasaPOD(onCompleteListener: Listener<ResponsePOD>) {
-        retrofitObject.getPictureOfTheDay(API_KEY).enqueue(object : Callback<ResponsePOD?> {
+    fun getNasaPOD(date: String, onCompleteListener: Listener<ResponsePOD>) {
+        retrofitObject.getPictureOfTheDay(API_KEY, date).enqueue(object : Callback<ResponsePOD?> {
             override fun onResponse(call: Call<ResponsePOD?>, response: Response<ResponsePOD?>) {
                 response.body()?.let {
                     onCompleteListener.on(it)

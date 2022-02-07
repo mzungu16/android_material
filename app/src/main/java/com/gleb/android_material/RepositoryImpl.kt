@@ -8,8 +8,8 @@ class RepositoryImpl : Repository {
 
     override fun getNasaPOD(): LiveData<ResponsePOD> = liveDataNasaImage
 
-    override fun getNasaPODInternetAccess(){
-        InternetLoader.getNasaPOD(object : InternetLoader.Listener<ResponsePOD> {
+    override fun getNasaPODInternetAccess(date: String) {
+        InternetLoader.getNasaPOD(date, object : InternetLoader.Listener<ResponsePOD> {
             override fun on(arg: ResponsePOD) {
                 liveDataNasaImage.value = arg
             }
