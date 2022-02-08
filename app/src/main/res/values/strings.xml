@@ -7,4 +7,6 @@
     <string name="text_choice_1">Day before yesterday</string>
     <string name="text_choice_2">Yesterday</string>
     <string name="text_choice_3">Right now</string>
+    <string name="search_title">search</string>
+    <string name="filter_title">filter</string>
 </resources>

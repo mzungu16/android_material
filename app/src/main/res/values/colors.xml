@@ -11,4 +11,14 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="color_gray">#66000000</color>
+    <color name="toolbarIconColor">#FFFFFF</color>
+
+
+    <color name="colorPrimary2">#E0E0E0</color>
+    <color name="colorPrimaryDark2">#FBB8AC</color>
+    <color name="colorAccent2">#FEDBD0</color>
+    <color name="textColorPrimary">#442C2E</color>
+    <color name="toolbarIconColor2">@color/textColorPrimary</color>
+    <color name="loginPageBackgroundColor">#FFFFFF</color>
+    <color name="productGridBackgroundColor">#FFFFFF</color>
 </resources>

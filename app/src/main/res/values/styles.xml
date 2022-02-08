@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme_My" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary2</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorAccent">@color/colorAccent2</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+    </style>
+
+    <style name="Widget.My.Material.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/colorPrimaryDark2</item>
+        <item name="android:theme">@style/Theme_My</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="titleTextAppearance">@style/TextAppearance.Shrine.Toolbar</item>
+    </style>
+
+    <style name="TextAppearance.Shrine.Toolbar" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/aclonica</item>
+    </style>
+</resources>
