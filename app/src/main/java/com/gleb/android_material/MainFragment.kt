@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -17,9 +18,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
@@ -32,6 +35,7 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainFragmentViewModel
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,12 +67,6 @@ class MainFragment : Fragment() {
             setNasaPODLiveDataValueMethod()
             getNasaPODInternetAccess(currentDate)
         }
-        val editText = view.findViewById<TextInputEditText>(R.id.input_edit_text)
-        view.findViewById<TextInputLayout>(R.id.input_layout).setEndIconOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://en.wikipedia.org/wiki/${editText.text.toString()}")
-            })
-        }
 
         view.findViewById<ChipGroup>(R.id.chip_group).setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
@@ -88,7 +86,11 @@ class MainFragment : Fragment() {
                 else -> viewModel.getNasaPODInternetAccess(currentDate)
             }
         }
+
+
+
     }
+
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)

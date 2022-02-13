@@ -9,4 +9,6 @@
     <string name="text_choice_3">Right now</string>
     <string name="search_title">search</string>
     <string name="filter_title">filter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
