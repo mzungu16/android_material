@@ -12,56 +12,63 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_group"
+        <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/customViewImage_id"
-            app:singleSelection="true">
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_1"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_choice_1" />
+                android:layout_marginTop="5dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                app:singleSelection="true">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_2"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_1"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_choice_1" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_2"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_choice_2" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_3"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_choice_3" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.gleb.android_material.FirstCustomView
+                android:id="@+id/customViewImage_id"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_choice_2" />
+                android:layout_marginTop="10dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chip_group"
+                app:srcCompat="@drawable/ic_no_photo_vector" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_3"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_choice_3" />
-        </com.google.android.material.chip.ChipGroup>
-
-        <com.gleb.android_material.FirstCustomView
-            android:id="@+id/customViewImage_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingStart="2dp"
-            android:paddingEnd="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chip_group"
-            app:srcCompat="@drawable/ic_no_photo_vector" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include layout="@layout/bottom_sheet_layout" />
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
