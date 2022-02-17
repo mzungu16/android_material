@@ -36,7 +36,6 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         val currentDate = sdf.format(Date())
-
         viewModel = ViewModelProvider(this).get(MainFragmentViewModel::class.java)
         viewModel.apply {
             getNasaPODLiveData().observe(viewLifecycleOwner, Observer { responePOD ->
@@ -45,7 +44,6 @@ class MainFragment : Fragment() {
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
                 }
-                setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
                 with(view.findViewById<TextView>(R.id.bottom_sheet_description_header)) {
                     text = responePOD.title
                 }
@@ -95,12 +93,4 @@ class MainFragment : Fragment() {
             })
 
     }
-
-
-    private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-
-    }
-
 }
