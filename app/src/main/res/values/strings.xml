@@ -4,7 +4,7 @@
     <string name="search_wiki">Search in Wiki</string>
     <string name="wiki_helper_text">Check the term in wikipedia</string>
     <string name="search">Search</string>
-    <string name="text_choice_1">Day before yesterday</string>
+    <string name="text_choice_1">Before yesterday</string>
     <string name="text_choice_2">Yesterday</string>
     <string name="text_choice_3">Right now</string>
     <string name="search_title">search</string>
