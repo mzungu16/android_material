@@ -59,6 +59,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
 //Coil image download
     implementation("io.coil-kt:coil:0.11.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
 //    implementation("io.coil-kt:coil-video:1.4.0")
 
 
