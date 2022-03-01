@@ -21,15 +21,15 @@ class MainActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.bottom_sheet_description).text.toString()
             )
             when (it.itemId) {
-                  R.id.search -> {
-                      supportFragmentManager.beginTransaction()
-                          .replace(R.id.container_layout, searchFragment)
-                          .commit()
+                R.id.search -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container_layout, searchFragment)
+                        .commit()
 
-                  }
+                }
                 R.id.telescope -> {
                     supportFragmentManager.beginTransaction()
-                        .add(R.id.container_layout, ViewPagerFragment())
+                        .add(R.id.container_layout, NoteFragment())
                         .commit()
 
                 }
