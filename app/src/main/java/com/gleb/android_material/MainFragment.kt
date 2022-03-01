@@ -21,11 +21,6 @@ import com.google.android.material.tabs.TabLayout
 import java.util.*
 
 class MainFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
     private lateinit var viewModel: MainFragmentViewModel
     private var isExpanded = false
 
@@ -41,6 +36,9 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val imageView = view.findViewById<FirstCustomView>(R.id.customViewImage_id)
         val videoView = view.findViewById<SecondCustomView>(R.id.customViewVideo_id)
+        val tabLayout = view.findViewById<TabLayout>(R.id.tabLayout)
+        val header = view.findViewById<TextView>(R.id.bottom_sheet_description_header)
+        val description = view.findViewById<TextView>(R.id.bottom_sheet_description)
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         val currentDate = sdf.format(Date())
 
@@ -60,11 +58,7 @@ class MainFragment : Fragment() {
                         start()
                     }
                 } else {
-                    with(imageView) {
-                        load(responePOD.url) {
-                            placeholder(R.drawable.ic_no_photo_vector)
-                        }
-                    }
+                    imageView.load(responePOD.url) { placeholder(R.drawable.ic_no_photo_vector) }
                     imageView.setOnClickListener {
                         isExpanded = !isExpanded
                         TransitionManager.beginDelayedTransition(
@@ -84,52 +78,46 @@ class MainFragment : Fragment() {
                             else ImageView.ScaleType.FIT_CENTER
                     }
                 }
-                with(view.findViewById<TextView>(R.id.bottom_sheet_description_header)) {
-                    text = responePOD.title
-                }
-                with(view.findViewById<TextView>(R.id.bottom_sheet_description)) {
-                    text = responePOD.explanation
-                }
+                TransitionManager.beginDelayedTransition(view.findViewById(R.id.text_container))
+                header.text = responePOD.title
+                description.text = responePOD.explanation
             })
             setNasaPODLiveDataValueMethod()
             getNasaPODInternetAccess(currentDate)
         }
-        val tabLayout = view.findViewById<TabLayout>(R.id.tabLayout)
+
         val listOfTabs: MutableList<Int> = mutableListOf()
         for (i in 0..tabLayout.childCount) {
             listOfTabs.add(i)
         }
-        view.findViewById<TabLayout>(R.id.tabLayout)
-            .addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    when (tab?.position) {
-                        0 -> {
-                            viewModel.getNasaPODInternetAccess(currentDate)
-                        }
-                        1 -> {
-                            val cal = Calendar.getInstance()
-                            cal.add(Calendar.DATE, -1)
-                            val yesterday = sdf.format(cal.time)
-                            viewModel.getNasaPODInternetAccess(yesterday)
-                        }
-                        2 -> {
-                            val cal = Calendar.getInstance()
-                            cal.add(Calendar.DATE, -2)
-                            val yesterdayY = sdf.format(cal.time)
-                            viewModel.getNasaPODInternetAccess(yesterdayY)
-                        }
+
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab?.position) {
+                    0 -> viewModel.getNasaPODInternetAccess(currentDate)
+                    1 -> {
+                        val cal = Calendar.getInstance()
+                        cal.add(Calendar.DATE, -1)
+                        val yesterday = sdf.format(cal.time)
+                        viewModel.getNasaPODInternetAccess(yesterday)
+                    }
+                    2 -> {
+                        val cal = Calendar.getInstance()
+                        cal.add(Calendar.DATE, -2)
+                        val yesterdayY = sdf.format(cal.time)
+                        viewModel.getNasaPODInternetAccess(yesterdayY)
                     }
                 }
+            }
 
-                override fun onTabUnselected(tab: TabLayout.Tab?) {
-                    //Nothing to do
-                }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                //Nothing to do
+            }
 
-                override fun onTabReselected(tab: TabLayout.Tab?) {
-                    //Nothing to do
-
-                }
-            })
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                //Nothing to do
+            }
+        })
 
     }
 }
