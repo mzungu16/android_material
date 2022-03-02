@@ -28,7 +28,6 @@ class NoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val fabButton = view.findViewById<FloatingActionButton>(R.id.fab_id)
         val db = activity?.let {
             Room.databaseBuilder(
@@ -44,7 +43,6 @@ class NoteFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
         viewModel.getNoteLiveData().observe(viewLifecycleOwner) {
             noteAdapter.setNotes(it)
-//            recreateFragment()
         }
         viewModel.setNoteLiveDataValueMethod()
         viewModel.getNoteAccess(noteTableDao)
@@ -70,19 +68,12 @@ class NoteFragment : Fragment() {
                             descriptionText.text.toString()
                         )
                         viewModel.insertNote(noteTableDao, note)
+                        activity?.supportFragmentManager?.beginTransaction()
+                            ?.replace(R.id.container_layout, NoteFragment())?.commit()
                     }
                 })
                 .setNeutralButton("Cancel", null)
                 .show()
         }
     }
-
-    fun recreateFragment() {
-        activity?.let {
-            it.supportFragmentManager.beginTransaction()
-                .replace(R.id.container_layout,NoteFragment())
-                .commit()
-        }
-    }
-
 }

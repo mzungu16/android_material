@@ -16,12 +16,12 @@ class MainActivity : AppCompatActivity() {
             .commit()
 
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {
-            val searchFragment = SearchFragment.newInstance(
-                findViewById<TextView>(R.id.bottom_sheet_description_header).text.toString(),
-                findViewById<TextView>(R.id.bottom_sheet_description).text.toString()
-            )
             when (it.itemId) {
                 R.id.search -> {
+                    val searchFragment = SearchFragment.newInstance(
+                        findViewById<TextView>(R.id.bottom_sheet_description_header).text.toString(),
+                        findViewById<TextView>(R.id.bottom_sheet_description).text.toString()
+                    )
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.container_layout, searchFragment)
                         .commit()
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.telescope -> {
                     supportFragmentManager.beginTransaction()
-                        .add(R.id.container_layout, NoteFragment())
+                        .replace(R.id.container_layout, NoteFragment())
                         .commit()
 
                 }

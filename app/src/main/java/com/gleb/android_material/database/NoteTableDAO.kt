@@ -1,16 +1,16 @@
 package com.gleb.android_material.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface NoteTableDAO {
     @Query("SELECT * FROM dataBaseTable")
     fun getAllNotes(): List<NoteTable>
 
-    @Insert
+    @Update
+    fun updateAll(notes:List<NoteTable>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNote(note: NoteTable)
 
     @Delete
