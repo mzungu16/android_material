@@ -46,4 +46,14 @@ class RepositoryImpl : Repository {
             )
         )
     }
+
+    override fun deleteNoteFromDB(dao: NoteTableDAO?, note: Note) {
+        dao?.deleteNote(
+            NoteTable(
+                null,
+                headerNote = note.header,
+                descriptionNote = note.description
+            )
+        )
+    }
 }

@@ -5,7 +5,7 @@ import androidx.room.*
 @Dao
 interface NoteTableDAO {
     @Query("SELECT * FROM dataBaseTable")
-    fun getAllNotes(): List<NoteTable>
+    fun getAllNotes(): MutableList<NoteTable>
 
     @Update
     fun updateAll(notes:List<NoteTable>)

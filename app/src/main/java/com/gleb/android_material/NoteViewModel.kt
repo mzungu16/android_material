@@ -26,4 +26,8 @@ class NoteViewModel : ViewModel() {
     fun insertNote(dao: NoteTableDAO?, note: Note) {
         repo.insertNoteToBD(dao, note)
     }
+
+    fun deleteNote(dao: NoteTableDAO?,note: Note){
+        repo.deleteNoteFromDB(dao,note)
+    }
 }

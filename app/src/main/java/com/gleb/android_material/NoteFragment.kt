@@ -3,11 +3,13 @@ package com.gleb.android_material
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -16,9 +18,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 
 
-class NoteFragment : Fragment() {
+class NoteFragment : Fragment(), NoteAdapter.OnNoteListener {
     private lateinit var viewModel: NoteViewModel
-    private val noteAdapter = NoteAdapter()
+    private lateinit var noteAdapter: NoteAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,16 +41,23 @@ class NoteFragment : Fragment() {
         }
         val noteTableDao = db?.noteDao()
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview_id)
-
+        val list = mutableListOf<Note>()
         viewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
         viewModel.getNoteLiveData().observe(viewLifecycleOwner) {
-            noteAdapter.setNotes(it)
+            for (i in it) {
+                list.add(i)
+            }
+            noteAdapter.setNotes(list)
         }
         viewModel.setNoteLiveDataValueMethod()
         viewModel.getNoteAccess(noteTableDao)
-
+        noteAdapter = NoteAdapter(this)
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            val callBack = MyItemTouchHelper(noteAdapter)
+            val itemTouchHelper = ItemTouchHelper(callBack)
+            noteAdapter.setTouchHelper(itemTouchHelper)
+            itemTouchHelper.attachToRecyclerView(this)
             adapter = noteAdapter
         }
 
@@ -76,4 +85,9 @@ class NoteFragment : Fragment() {
                 .show()
         }
     }
+
+    override fun onNoteClick(position: Int) {
+        Log.d("TAG", "Note clicked $position")
+    }
+
 }

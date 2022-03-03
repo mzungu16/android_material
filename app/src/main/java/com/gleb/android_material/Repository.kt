@@ -10,6 +10,7 @@ interface Repository {
     fun getNoteAccess(dao: NoteTableDAO?)
     fun getAllFilmsFromDB(dao: NoteTableDAO?): List<Note>
     fun insertNoteToBD(dao: NoteTableDAO?, note: Note)
+    fun deleteNoteFromDB(dao: NoteTableDAO?, note: Note)
 
 //    fun deleteNoteFromBD(dao: NoteTableDAO, note: NoteTable)
 
