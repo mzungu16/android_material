@@ -1,8 +1,15 @@
 package com.gleb.android_material
 
+import android.graphics.Color
+import android.graphics.Typeface.BOLD
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,9 +85,19 @@ class MainFragment : Fragment() {
                             else ImageView.ScaleType.FIT_CENTER
                     }
                 }
-                TransitionManager.beginDelayedTransition(view.findViewById(R.id.text_container))
-                header.text = responePOD.title
-                description.text = responePOD.explanation
+                val spannableTitle = SpannableStringBuilder(responePOD.title).also {
+                    responePOD.title?.let { title ->
+                        it.setSpan(
+                            StyleSpan(BOLD),
+                            0,
+                            title.length,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                    }
+                }
+                header.text = spannableTitle
+                val spannableExplanation = spannableStringBuilder(responePOD)
+                description.text = spannableExplanation
             })
             setNasaPODLiveDataValueMethod()
             getNasaPODInternetAccess(currentDate)
@@ -119,5 +136,32 @@ class MainFragment : Fragment() {
             }
         })
 
+    }
+
+    private fun spannableStringBuilder(responePOD: ResponsePOD): SpannableStringBuilder {
+        val spannableExplanation = SpannableStringBuilder(responePOD.explanation)
+        var numOfLetters = 0
+        var listOfIndexes = mutableListOf<Int>()
+        responePOD.explanation?.let {
+            for ((index, char: Char) in it.withIndex()) {
+                if (char != ' ') {
+                    numOfLetters++
+                    listOfIndexes.add(index)
+                } else {
+                    if (numOfLetters == 2) {
+                        Log.d("TEXT", "${listOfIndexes.first()} - ${listOfIndexes.last()}")
+                        spannableExplanation.setSpan(
+                            ForegroundColorSpan(Color.MAGENTA),
+                            listOfIndexes.first(),
+                            listOfIndexes.last() + 1,
+                            Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                        )
+                    }
+                    numOfLetters = 0
+                    listOfIndexes = mutableListOf()
+                }
+            }
+        }
+        return spannableExplanation
     }
 }
