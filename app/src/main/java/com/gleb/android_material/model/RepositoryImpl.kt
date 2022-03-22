@@ -1,4 +1,4 @@
-package com.gleb.android_material
+package com.gleb.android_material.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

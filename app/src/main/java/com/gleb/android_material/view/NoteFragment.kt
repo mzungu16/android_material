@@ -1,4 +1,4 @@
-package com.gleb.android_material
+package com.gleb.android_material.view
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -13,7 +13,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.gleb.android_material.*
 import com.gleb.android_material.database.AppDatabase
+import com.gleb.android_material.model.MyItemTouchHelper
+import com.gleb.android_material.model.Note
+import com.gleb.android_material.viewmodel.NoteAdapter
+import com.gleb.android_material.viewmodel.NoteViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 

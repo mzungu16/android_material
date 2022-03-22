@@ -1,4 +1,4 @@
-package com.gleb.android_material
+package com.gleb.android_material.model
 
 class ResponsePOD(
     val explanation: String?,

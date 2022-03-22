@@ -1,4 +1,4 @@
-package com.gleb.android_material
+package com.gleb.android_material.view
 
 import android.content.Context
 import android.util.AttributeSet

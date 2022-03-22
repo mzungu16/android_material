@@ -1,4 +1,4 @@
-package com.gleb.android_material
+package com.gleb.android_material.view
 
 import android.graphics.Color
 import android.graphics.Typeface.BOLD
@@ -24,6 +24,9 @@ import androidx.transition.ChangeImageTransform
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import coil.api.load
+import com.gleb.android_material.R
+import com.gleb.android_material.model.ResponsePOD
+import com.gleb.android_material.viewmodel.MainFragmentViewModel
 import com.google.android.material.tabs.TabLayout
 import java.util.*
 

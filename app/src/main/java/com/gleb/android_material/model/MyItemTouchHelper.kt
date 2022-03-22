@@ -1,9 +1,10 @@
-package com.gleb.android_material
+package com.gleb.android_material.model
 
 import android.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.gleb.android_material.R
 
 class MyItemTouchHelper(private val itemAdapter: ItemTouchHelperAdapter) :
     ItemTouchHelper.Callback() {

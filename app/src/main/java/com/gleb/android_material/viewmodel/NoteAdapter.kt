@@ -1,10 +1,14 @@
-package com.gleb.android_material
+package com.gleb.android_material.viewmodel
 
 import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.gleb.android_material.R
+import com.gleb.android_material.model.DiffCallBack
+import com.gleb.android_material.model.ItemTouchHelperAdapter
+import com.gleb.android_material.model.Note
 
 class NoteAdapter(
     private var mainOnNoteListener: OnNoteListener
