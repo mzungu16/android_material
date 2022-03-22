@@ -1,5 +1,6 @@
 package com.gleb.android_material.view
 
+import android.content.Context.MODE_PRIVATE
 import android.graphics.Color
 import android.graphics.Typeface.BOLD
 import android.icu.text.SimpleDateFormat
@@ -31,6 +32,7 @@ import com.google.android.material.tabs.TabLayout
 import java.util.*
 
 class MainFragment : Fragment() {
+    val MY_SAHRED_PREF = "MySharedPref"
     private lateinit var viewModel: MainFragmentViewModel
     private var isExpanded = false
 
@@ -51,7 +53,7 @@ class MainFragment : Fragment() {
         val description = view.findViewById<TextView>(R.id.bottom_sheet_description)
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         val currentDate = sdf.format(Date())
-
+        val editor = activity?.getSharedPreferences(MY_SAHRED_PREF,MODE_PRIVATE)?.edit()
         viewModel = ViewModelProvider(this).get(MainFragmentViewModel::class.java)
         viewModel.apply {
             getNasaPODLiveData().observe(viewLifecycleOwner, Observer { responePOD ->
@@ -98,9 +100,14 @@ class MainFragment : Fragment() {
                         )
                     }
                 }
+                Log.d("PutShared","${responePOD.title}")
+                editor?.putString("Title",responePOD.title)
                 header.text = spannableTitle
                 val spannableExplanation = spannableStringBuilder(responePOD)
+                Log.d("PutShared","${responePOD.explanation}")
+                editor?.putString("Explanation",responePOD.explanation)
                 description.text = spannableExplanation
+                editor?.apply()
             })
             setNasaPODLiveDataValueMethod()
             getNasaPODInternetAccess(currentDate)

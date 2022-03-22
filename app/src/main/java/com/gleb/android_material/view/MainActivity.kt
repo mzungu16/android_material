@@ -1,7 +1,6 @@
 package com.gleb.android_material.view
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.gleb.android_material.R
@@ -16,12 +15,14 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.container_layout, MainFragment())
             .commit()
 
+        val prefs = getSharedPreferences(MainFragment().MY_SAHRED_PREF, MODE_PRIVATE)
+
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.search -> {
                     val searchFragment = SearchFragment.newInstance(
-                        findViewById<TextView>(R.id.bottom_sheet_description_header).text.toString(),
-                        findViewById<TextView>(R.id.bottom_sheet_description).text.toString()
+                        prefs.getString("Title","Nothing"),
+                        prefs.getString("Explanation","Nothing")
                     )
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.container_layout, searchFragment)
