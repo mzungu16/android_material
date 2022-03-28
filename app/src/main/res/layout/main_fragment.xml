@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainFragment">
+    tools:context=".view.MainFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.gleb.android_material.FirstCustomView
+        <com.gleb.android_material.view.FirstCustomView
             android:id="@+id/customViewImage_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             android:paddingEnd="2dp"
             app:srcCompat="@drawable/ic_no_photo_vector" />
 
-        <com.gleb.android_material.SecondCustomView
+        <com.gleb.android_material.view.SecondCustomView
             android:id="@+id/customViewVideo_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

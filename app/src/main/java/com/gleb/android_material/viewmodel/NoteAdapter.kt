@@ -1,13 +1,21 @@
-package com.gleb.android_material
+package com.gleb.android_material.viewmodel
 
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.gleb.android_material.R
+import com.gleb.android_material.database.NoteTableDAO
+import com.gleb.android_material.model.DiffCallBack
+import com.gleb.android_material.model.ItemTouchHelperAdapter
+import com.gleb.android_material.model.Note
 
 class NoteAdapter(
-    private var mainOnNoteListener: OnNoteListener
+    private var mainOnNoteListener: OnNoteListener,
+    private val dao: NoteTableDAO?,
+    private val viewModel: NoteViewModel
 ) :
     RecyclerView.Adapter<NoteAdapter.NoteViewHolder>(), ItemTouchHelperAdapter {
     private var noteList = mutableListOf<Note>()
@@ -23,6 +31,7 @@ class NoteAdapter(
             it.dispatchUpdatesTo(this)
         }
         noteList = noteListParam
+        Log.d("NoteList", "$noteList")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -41,10 +50,12 @@ class NoteAdapter(
         val fromNote = noteList[fromPosition]
         noteList.remove(fromNote)
         noteList.add(toPosition, fromNote)
+        Log.d("NoteList", "$noteList")
         notifyItemMoved(fromPosition, toPosition)
     }
 
     override fun onItemSwiped(position: Int) {
+        viewModel.deleteNote(dao, noteList[position])
         noteList.removeAt(position)
         notifyItemRemoved(position)
     }

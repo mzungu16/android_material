@@ -1,11 +1,12 @@
-package com.gleb.android_material
+package com.gleb.android_material.viewmodel
 
-import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import java.util.*
+import com.gleb.android_material.model.Repository
+import com.gleb.android_material.model.RepositoryImpl
+import com.gleb.android_material.model.ResponsePOD
 
 class MainFragmentViewModel : ViewModel() {
     private val liveDataToObserve: MutableLiveData<ResponsePOD> = MutableLiveData()

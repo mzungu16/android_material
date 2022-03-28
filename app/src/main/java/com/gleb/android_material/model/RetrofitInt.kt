@@ -1,4 +1,4 @@
-package com.gleb.android_material
+package com.gleb.android_material.model
 
 import retrofit2.Call
 import retrofit2.http.GET

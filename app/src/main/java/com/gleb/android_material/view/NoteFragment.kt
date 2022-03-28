@@ -1,4 +1,4 @@
-package com.gleb.android_material
+package com.gleb.android_material.view
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -13,7 +13,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.gleb.android_material.R
 import com.gleb.android_material.database.AppDatabase
+import com.gleb.android_material.model.MyItemTouchHelper
+import com.gleb.android_material.model.Note
+import com.gleb.android_material.viewmodel.NoteAdapter
+import com.gleb.android_material.viewmodel.NoteViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 
@@ -51,7 +56,7 @@ class NoteFragment : Fragment(), NoteAdapter.OnNoteListener {
         }
         viewModel.setNoteLiveDataValueMethod()
         viewModel.getNoteAccess(noteTableDao)
-        noteAdapter = NoteAdapter(this)
+        noteAdapter = NoteAdapter(this, noteTableDao, viewModel)
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             val callBack = MyItemTouchHelper(noteAdapter)
@@ -73,6 +78,7 @@ class NoteFragment : Fragment(), NoteAdapter.OnNoteListener {
                         val descriptionText =
                             customView.findViewById<TextInputEditText>(R.id.editDescription)
                         val note = Note(
+                            (0..50).random(),
                             headerText.text.toString(),
                             descriptionText.text.toString()
                         )

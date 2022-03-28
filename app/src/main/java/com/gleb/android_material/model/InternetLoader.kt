@@ -1,7 +1,7 @@
-package com.gleb.android_material
+package com.gleb.android_material.model
 
-import android.provider.Settings.System.getString
 import android.util.Log
+import com.gleb.android_material.BuildConfig
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
