@@ -29,6 +29,7 @@ class RepositoryImpl : Repository {
         if (dao != null) {
             return dao.getAllNotes().map {
                 Note(
+                    id = it.id,
                     header = it.headerNote,
                     description = it.descriptionNote
                 )
@@ -40,7 +41,7 @@ class RepositoryImpl : Repository {
     override fun insertNoteToBD(dao: NoteTableDAO?, note: Note) {
         dao?.insertNote(
             NoteTable(
-                null,
+                note.id,
                 note.header,
                 note.description
             )
@@ -50,7 +51,7 @@ class RepositoryImpl : Repository {
     override fun deleteNoteFromDB(dao: NoteTableDAO?, note: Note) {
         dao?.deleteNote(
             NoteTable(
-                null,
+                id = note.id,
                 headerNote = note.header,
                 descriptionNote = note.description
             )

@@ -7,9 +7,6 @@ interface NoteTableDAO {
     @Query("SELECT * FROM dataBaseTable")
     fun getAllNotes(): MutableList<NoteTable>
 
-    @Update
-    fun updateAll(notes:List<NoteTable>)
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNote(note: NoteTable)
 

@@ -30,7 +30,7 @@ class NoteViewModel : ViewModel() {
         repo.insertNoteToBD(dao, note)
     }
 
-    fun deleteNote(dao: NoteTableDAO?,note: Note){
-        repo.deleteNoteFromDB(dao,note)
+    fun deleteNote(dao: NoteTableDAO?, note: Note) {
+        repo.deleteNoteFromDB(dao, note)
     }
 }
